@@ -1,0 +1,45 @@
+extends layout
+
+block content
+
+  h1 #{title}
+
+  form(method="POST", enctype="multipart/form-data")
+    div.form-group
+      label(for='item.name') Item:
+      input#name.form-control(type='text', placeholder='Name of piece' name='name' required value=(undefined===item ? 'pooooooo' : item.name) )
+    div.form-group
+      label(for='item.description') Description:
+      input#description.form-control(type='text', placeholder='Add a description' name='description' required value=(undefined===item ? 'poooooo' : item.description) )
+    div.form-group
+      label(for='item.price') Price:
+      input#price.form-control(type='Number', placeholder='0' name='price' required value=(undefined===item ? '3' : item.price) )
+    div.form-group
+      label(for='item.price') Stock:
+      input#stock.form-control(type='Number', placeholder='0' name='stock' required value=(undefined===item ? '4' : item.stock) )
+    div.form-group
+      label(for='date') Release Date:
+      input#date.form-control(type='date' name='date' value=(undefined===item ? '' : item.due_back_yyyy_mm_dd) )
+    div.form-group
+      label Genre:
+      div
+       for genre in genres
+        div(style='display: inline; padding-right:10px;')
+         if genre.checked
+          input.checkbox-input(type='checkbox', name='genre', id=genre._id, value=genre._id, checked)
+          label(for=genre._id) &nbsp;#{genre.name}
+
+         else
+          input.checkbox-input(type='checkbox', name='genre', id=genre._id, value=genre._id)
+          label(for=genre._id) &nbsp;#{genre.name}
+    div.form-group
+      label(for='item.file') File:
+      input(type="file", name="avatar")
+
+    button.btn.btn-primary(type='submit') Submit
+
+  if errors
+    ul
+      for error in errors
+        li!= error.msg
+

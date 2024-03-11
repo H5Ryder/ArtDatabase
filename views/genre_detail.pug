@@ -1,0 +1,27 @@
+extends layout
+
+block content
+
+  h1 #{genre.name}
+
+  div(style='margin-left:20px;margin-top:20px')
+
+    h4 Genre
+
+    if items.length
+      // Use a style for ul to display its children inline
+      ul(style='list-style: none; padding: 0; display: flex;')
+        each item in items
+          li(style='margin-right: 10px;')
+            p= item.name
+    else
+      p There are no items.
+
+
+  hr
+  p
+    a(href=genre.url+'/update') Update Genre
+  p
+    a(href=genre.url+'/delete') Delete Genre
+
+  

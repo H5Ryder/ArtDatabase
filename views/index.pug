@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #[em Digital Art Library], a very basic Express website developed to show case unique digital art.
+
+  h1 Dynamic content
+
+  p The Art Library has the following record counts:
+
+  ul
+    li #[strong Items:] !{item_count}
+    li #[strong Genres:] !{genre_count}
+

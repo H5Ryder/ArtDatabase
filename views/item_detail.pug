@@ -1,0 +1,37 @@
+extends layout
+
+block content
+
+  h1 #{item.name}
+
+  p #{item.description}
+
+  p #{item.date_formatted}
+
+
+  if item.file_name
+  img(src=image, alt='Item Image', style='width: 50%; height: auto;')
+
+
+  div(style='margin-left:20px;margin-top:20px')
+
+    h4 Genre
+
+    if item.genre.length
+      // Use a style for ul to display its children inline
+      ul(style='list-style: none; padding: 0; display: flex;')
+        each categ in item.genre
+          li(style='margin-right: 10px;')
+            p= categ.name
+    else
+      p There are no genres.
+
+
+  hr
+
+  p
+    a(href=item.url+'/delete') Delete Item
+
+  p
+    a(href=item.url+'/update') Update Item
+
